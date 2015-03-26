@@ -11,6 +11,9 @@ class OpenSSLConfig(configparser.ConfigParser):
             lines = itertools.chain(("[__global__]",), stream)
             super().read_file(lines)
 
+    def optionxform(self, optionstr):
+        return str(optionstr)
+
     def write(self, fp, space_around_delimiters=True):
         temp_buffer = io.StringIO()
         super().write(temp_buffer, space_around_delimiters)
